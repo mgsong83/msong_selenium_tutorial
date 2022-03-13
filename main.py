@@ -7,8 +7,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-KEYWORD = "RTX 3080"
-
 
 class GoogleKeywordScreenShoter:
 
