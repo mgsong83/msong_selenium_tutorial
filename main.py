@@ -30,17 +30,22 @@ class GoogleKeywordScreenShoter:
         search_bar.send_keys(self.keyword)  # key word
         search_bar.send_keys(Keys.ENTER)
 
-        shitty_element = WebDriverWait(self.browser, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "qGXjvb")))  # wait until AD load
+        try:
+            shitty_element = WebDriverWait(self.browser, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "qGXjvb")))  # wait until AD load
 
-        # use JS code in python
-        self.browser.execute_script(
-            """
-            const elements_to_remove = arguments[0];
-            elements_to_remove.parentElement.removeChild(elements_to_remove);
-            """,
-            shitty_element
-        )  # remove AD contents
+            # use JS code in python
+            self.browser.execute_script(
+                """
+                const elements_to_remove = arguments[0];
+                elements_to_remove.parentElement.removeChild(elements_to_remove);
+                """,
+                shitty_element
+            )  # remove AD contents
+
+        except Exception:
+            pass
+
         search_results = self.browser.find_elements_by_class_name("g")
         print(search_results)
 
